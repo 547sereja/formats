@@ -6,10 +6,17 @@ news_list = []
 long_list = []
 result = []
 cnt = Counter()
-with open('newsafr.json', encoding= 'utf-8') as file:
-    data = json.load(file)
-    for news in data['rss']['channel']['items']:
-        news_list.append(news['description'])
+def find_top():
+    with open('newsafr.json', encoding= 'utf-8') as file:
+        data = json.load(file)
+        for news in data['rss']['channel']['items']:
+            news_list.append(news['description'])
+        for words in news_list:
+            words = words.lower().split()
+        work_with(words)
+
+
+def work_with(words):
     for words in news_list:
         words = words.lower().split()
     for len6 in words:
@@ -21,6 +28,8 @@ with open('newsafr.json', encoding= 'utf-8') as file:
         if v != 1:
             result.append(k)
     print(f'Топ поторяющихся слов: {result}')
+
+find_top()
 
 
 

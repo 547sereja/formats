@@ -15,7 +15,7 @@ xml_items = root.findall("channel/item")
 print(len(xml_items))
 print(type(xml_items))
 for item in xml_items:
-    all_news = item.find("description").text.split()
+    all_news = item.find("description").text.lower().split()
 for word in all_news:
     if len(word) >= needed:
         words_list.append(word)

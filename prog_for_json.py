@@ -11,7 +11,7 @@ with open('newsafr.json', encoding= 'utf-8') as file:
     for news in data['rss']['channel']['items']:
         news_list.append(news['description'])
     for words in news_list:
-        words = words.split()
+        words = words.lower().split()
     for len6 in words:
         if len(len6) >= needed_len:
             long_list.append(len6)

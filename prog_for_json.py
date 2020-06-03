@@ -1,41 +1,33 @@
 import json
-from collections import Counter
-from pprint import pprint
-needed_len = 6
-news_list = []
-long_list = []
-result = []
-cnt = Counter()
-def find_top():
+
+
+def func_split_news_from_json():
     with open('newsafr.json', encoding= 'utf-8') as file:
         data = json.load(file)
-        for news in data['rss']['channel']['items']:
-            news_list.append(news['description'])
-        for words in news_list:
-            words = words.lower().split()
-        work_with(words)
+        all_text_from_news = []
+        for all_news in data['rss']['channel']['items']:
+            all_text_from_news.append(all_news['description'])
+        for each_word in all_text_from_news:
+            each_word = each_word.lower().split()
+    return each_word
 
 
-def work_with(words):
-    for words in news_list:
-        words = words.lower().split()
-    for len6 in words:
-        if len(len6) >= needed_len:
-            long_list.append(len6)
-    for word in long_list:
-        cnt[word] += 1
-    for k, v in cnt.items():
-        if v != 1:
-            result.append(k)
-    print(f'Топ поторяющихся слов: {result}')
-
-find_top()
+func_split_news_from_json()
 
 
+def look_for_most_common_words(each_word):
+    needed_len = 6
+    more_6_len_list = []
+    for needed_words in each_word:
+        if len(needed_words) >= needed_len:
+            more_6_len_list.append(needed_words)
+
+    more_6_len_list.sort(key=more_6_len_list.count, reverse=True)
+    top10 = list(set(more_6_len_list[0:11]))
+
+    return top10
 
 
-
-
-
+print(look_for_most_common_words(func_split_news_from_json()))
 
 

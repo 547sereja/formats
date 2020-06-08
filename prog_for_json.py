@@ -1,18 +1,15 @@
+
+
 import json
 
 
 def func_split_news_from_json():
-    with open('newsafr.json', encoding= 'utf-8') as file:
+    with open('newsafr.json', encoding='utf-8') as file:
         data = json.load(file)
-        all_text_from_news = []
         for all_news in data['rss']['channel']['items']:
-            all_text_from_news.append(all_news['description'])
-        for each_word in all_text_from_news:
-            each_word = each_word.lower().split()
+            each_word = all_news['description'].lower().split()
+
     return each_word
-
-
-func_split_news_from_json()
 
 
 def look_for_most_common_words(each_word):
@@ -23,11 +20,12 @@ def look_for_most_common_words(each_word):
             more_6_len_list.append(needed_words)
 
     more_6_len_list.sort(key=more_6_len_list.count, reverse=True)
-    top10 = list(set(more_6_len_list[0:11]))
+    top10 = ' '.join(more_6_len_list[0:10])
 
     return top10
 
 
+
+
+
 print(look_for_most_common_words(func_split_news_from_json()))
-
-

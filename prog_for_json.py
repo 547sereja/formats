@@ -9,8 +9,8 @@ def func_split_news_from_json():
         for all_news in data['rss']['channel']['items']:
             each_word = all_news['description'].lower().split()
 
-    return each_word
-
+        return each_word
+# print(func_split_news_from_json())
 
 def look_for_most_common_words(each_word):
     needed_len = 6
@@ -20,12 +20,8 @@ def look_for_most_common_words(each_word):
             more_6_len_list.append(needed_words)
 
     more_6_len_list.sort(key=more_6_len_list.count, reverse=True)
-    top10 = ' '.join(more_6_len_list[0:10])
-
-    return top10
-
+    for words in more_6_len_list[0:10]:
+        print(f"Top word: {words}")
 
 
-
-
-print(look_for_most_common_words(func_split_news_from_json()))
+look_for_most_common_words(func_split_news_from_json())

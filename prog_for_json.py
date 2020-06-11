@@ -21,7 +21,7 @@ def look_for_most_common_words(each_word):
 
     more_6_len_list.sort(key=more_6_len_list.count, reverse=True)
     for words in more_6_len_list[0:10]:
-        print(f"Top word: {words}")
+        print(f"{len(words)},letters in the word:  {words}")
 
 
 look_for_most_common_words(func_split_news_from_json())
